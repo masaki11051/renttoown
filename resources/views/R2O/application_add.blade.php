@@ -29,10 +29,10 @@
         </div>
         <div >
           <table class="table">
-            @foreach ($customers_latest as $customers_latest)
+            @foreach ($customers as $customer)
             <thead>
               <tr>
-                <th scope="col" value="{{$customers_latest->id}}">{{$customers_latest->name}}</th>
+                <th scope="col" value="{{$customer->id}}">{{$customer->name}}</th>
               </tr>
             </thead>
              @endforeach
