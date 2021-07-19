@@ -89,7 +89,7 @@ class R2O_Controller extends Controller
         //$motorcycles = DB::table('motorcycles')->get();
         //$plan = DB::table('plans')->get();
         var_dump($customers);
-        return view('R2O.application_add', ['customers_latest' => $customers], ['companies' => $companies]);//
+        return view('R2O.application_add', ['customers' => $customers], ['companies' => $companies]);//
     }
     public function application_create(Request $request)
     {
