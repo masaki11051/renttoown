@@ -20,13 +20,24 @@
         </div><br>
         <div class="col-md-6">
           <label for="inputcompany" class="form-label" >Company</label>
-          <select class="form-select" id="company_id" name="company_id[]">
+          <select class="form-select" id="company_id" name="company_id">
             <option selected>Select one company from the menu</option>
-            @foreach ($items as $item)
-            <option value="{{$item->id}}">{{$item->name}}</option>
+            @foreach ($companies as $company)
+            <option value="{{$company->id}}">{{$company->name}}</option>
             @endforeach
           </select>
         </div>
+        <div >
+          <table class="table">
+            @foreach ($customers_latest as $customers_latest)
+            <thead>
+              <tr>
+                <th scope="col" value="{{$customers_latest->id}}">{{$customers_latest->name}}</th>
+              </tr>
+            </thead>
+             @endforeach
+          </table>
+          <div>
 
         <div class="col-12 row-3" style="line-height:4rem">
           <button type="submit" class="btn btn-primary">Register</button>

@@ -18,8 +18,6 @@ Route::get('/', function () {
     return view('toppage');
 });
 Route::get('/info', 'App\Http\Controllers\R2O_Controller@info');
-Route::get('/application_add', 'App\Http\Controllers\R2O_Controller@application_add');
-Route::post('/application_add', 'App\Http\Controllers\R2O_Controller@application_create');
 Route::get('/add', 'App\Http\Controllers\R2O_Controller@add');
 Route::post('/add', 'App\Http\Controllers\R2O_Controller@create');
 Route::get('/motorcycle_add', 'App\Http\Controllers\R2O_Controller@motorcycle_add');
@@ -30,5 +28,10 @@ Route::get('/company_add', 'App\Http\Controllers\R2O_Controller@company_add');
 Route::post('/company_add', 'App\Http\Controllers\R2O_Controller@company_create');
 Route::get('/find', 'App\Http\Controllers\R2O_Controller@find');
 Route::post('/find', 'App\Http\Controllers\R2O_Controller@search');
+Route::get('/application_add', 'App\Http\Controllers\R2O_Controller@application_add');
+Route::post('/application_add', 'App\Http\Controllers\R2O_Controller@application_create');
+
+
+Route::get('/test', 'App\Http\Controllers\R2O_Controller@test');
 
 

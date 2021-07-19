@@ -21,6 +21,6 @@ class Customer extends Model
 
     public function customers()
     {
-        return $this->belongsTo('App\Models\company');
+       
     }
 }

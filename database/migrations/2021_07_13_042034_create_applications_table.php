@@ -15,7 +15,10 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
+            $table->integer('customer_id');
             $table->integer('company_id');
+            $table->integer('motorcycle_id');
+            $table->integer('plan_id');
             $table->string('apply_date');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();

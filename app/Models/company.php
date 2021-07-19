@@ -16,9 +16,12 @@ class company extends Model
         'phone_number' => 'required|regex:/^0\d{10}$/',
         'address' => 'required',
     );
-
-    public function customers()
+    public function getData()
     {
-        return $this->hasMany('App\Models\customer');
+        return $this->id . ':' . $this->name;
+    }
+    public function applications()
+    {
+        return $this->hasMany('App\Models\application');
     }
 }

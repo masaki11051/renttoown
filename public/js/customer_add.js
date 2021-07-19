@@ -1,3 +1,6 @@
+
+document.getElementById("hidden1").style.display ="none";
+
           (function () {
           'use strict'
 
@@ -16,4 +19,4 @@
                 form.classList.add('was-validated')
               }, false)
             })
-        })()
+          })()

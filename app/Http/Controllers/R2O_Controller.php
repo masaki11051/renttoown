@@ -12,18 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class R2O_Controller extends Controller
 {
-    public function application_add(Request $request)
-    {
-        $items = DB::table('companies')->get();
-        return view('R2O.application_add', ['items' => $items]);//
-    }
-    public function application_create(Request $request)
-    {
-        $this->validate($request, application::$applicationrules);
-        $form = $request->all();
-        application::create($form);
-        return view('R2O.customer_add');
-    }
     public function info(Request $request)
     {
         $items = Customer::all();
@@ -31,7 +19,7 @@ class R2O_Controller extends Controller
     }
     public function add(Request $request)
     {
-        return view('R2O.customer_add');//
+        return view('R2O.customer_add'); //
     }
     public function create(Request $request)
     {
@@ -92,6 +80,30 @@ class R2O_Controller extends Controller
         }else{
             return view('R2O.error');
         };
+    }
+    public function application_add(Request $request)
+    {
+        $customers = DB::table('customers')->get();
+        //$customers_latest = array_pop($customers);
+        $companies = DB::table('companies')->get();
+        //$motorcycles = DB::table('motorcycles')->get();
+        //$plan = DB::table('plans')->get();
+        var_dump($customers);
+        return view('R2O.application_add', ['customers_latest' => $customers_latest], ['companies' => $companies]);//
+    }
+    public function application_create(Request $request)
+    {
+        $this->validate($request, application::$applicationrules);
+        $form = $request->all();
+        application::create($form);
+        return view('R2O.customer_add');
+    }
+
+
+    public function test(Request $request)
+    {
+        $items = company::all();
+        return view('R2O.test', ['items' => $items]);//
     }
 
 
