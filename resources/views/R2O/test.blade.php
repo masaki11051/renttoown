@@ -80,7 +80,6 @@
     <tr>
       @if ($data->applications != null)
         @foreach ($data->applications as $applicationinfo)
-
       <th scope="row">{{ $applicationinfo->id}}</th>
       <td>{{ $applicationinfo->apply_date }}</td>
       <td>{{ $applicationinfo->start_date}}</td>
@@ -89,23 +88,6 @@
     @endif
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <div class="p-1 mb-2 bg-primary text-white">Company info</div>
