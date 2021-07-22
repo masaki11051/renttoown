@@ -32,6 +32,7 @@ Route::get('/application_add', 'App\Http\Controllers\R2O_Controller@application_
 Route::post('/application_add', 'App\Http\Controllers\R2O_Controller@application_create');
 
 
+
 Route::get('/test', 'App\Http\Controllers\R2O_Controller@test');
 
 

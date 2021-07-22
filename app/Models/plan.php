@@ -9,11 +9,15 @@ class plan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['start_date', 'interest_rate', 'tenure',];
+    protected $fillable = ['plan_name', 'interest_rate', 'tenure',];
 
     public static $planrules = array(
-        'start_date' => 'required',
+        'plan_name' => 'required',
         'interest_rate' => 'required',
         'tenure' => 'required',
     );
+    public function applications()
+    {
+        return $this->hasMany('App\Models\application');
+    }
 }

@@ -17,6 +17,7 @@ class CreateMotorcyclesTable extends Migration
             $table->id();
             $table->string('brand');
             $table->string('motorcycle_type');
+            $table->string('unit_id');
             $table->integer('price');
             $table->string('motorcycle_certificate');
             $table->string('motorcycle_registration_number');

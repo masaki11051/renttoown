@@ -26,8 +26,19 @@ class R2O_Controller extends Controller
         $this->validate($request, Customer::$rules);
         $form = $request->all();
         Customer::create($form);
-        return view('R2O.motorcycle_add');
+        return view('R2O.customer_add');
+        //$customer = Customer::create($form);
+        //$request->session()->put('customer_id', $customer->id);
+
+        //$customer_ids = $request->session()->get('customer_id');
+
+        //$companies = DB::table('companies')->get();
+        //$motorcycles = DB::table('motorcycles')->get();
+        //$plans = DB::table('plans')->get();
+
+        //return view('R2O.customer_add', ['customer_ids' => $customer_ids,'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]); //
     }
+
     public function motorcycle_add(Request $request)
     {
         return view('R2O.motorcycle_add'); //
@@ -68,6 +79,10 @@ class R2O_Controller extends Controller
     }
     public function search(Request $request)
     {
+        $applications = application::all();
+        $companies = company::all();
+        $motorcycles = motorcycle::all();
+        $plans = plan::all();
         $data = customer::where('name', $request->input_name)
                         ->where('age', $request->input_age)
                         ->first();
@@ -76,35 +91,52 @@ class R2O_Controller extends Controller
                 'input' => $request->input_name, $request->input_age,
                 'data' => $data
             ];
-            return view('R2O.customer_find', $param);
+            return view('R2O.test', $param,['applications' => $applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
         }else{
             return view('R2O.error');
         };
     }
     public function application_add(Request $request)
     {
-        $customers = DB::table('customers')->get();
-        //$customers_latest = array_pop($customers);
+        $customers = Customer::all();
         $companies = DB::table('companies')->get();
-        //$motorcycles = DB::table('motorcycles')->get();
-        //$plan = DB::table('plans')->get();
-        var_dump($customers);
-        return view('R2O.application_add', ['customers' => $customers], ['companies' => $companies]);//
+        $motorcycles = DB::table('motorcycles')->get();
+        $plans = DB::table('plans')->get();
+        return view('R2O.application_add',['customers' => $customers, 'companies' => $companies,'motorcycles' => $motorcycles,'plans' => $plans]);//
     }
     public function application_create(Request $request)
     {
         $this->validate($request, application::$applicationrules);
         $form = $request->all();
         application::create($form);
-        return view('R2O.customer_add');
+        $customers = Customer::all();
+        $companies = DB::table('companies')->get();
+        $motorcycles = DB::table('motorcycles')->get();
+        $plans = DB::table('plans')->get();
+        return view('R2O.application_add', ['customers' => $customers, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);//
+    
     }
-
-
     public function test(Request $request)
     {
-        $items = company::all();
-        return view('R2O.test', ['items' => $items]);//
+        $applications = application::all();
+        $customers = Customer::all();
+        $companies = company::all();
+        $motorcycles = motorcycle::all();
+        $plans = plan::all();
+        return view('R2O.test', ['applications' => $applications, 'customers' => $customers, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
+
     }
+
+    //public function test(Request $request)
+    //{
+       // $customers = Customer::all();
+       // $companies = company::all();
+       // $motorcycles = motorcycle::all();
+       // $plans = plan::all();
+        //return view('R2O.test', ['customers' => $customers, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
+
+        //
+   // }
 
 
 

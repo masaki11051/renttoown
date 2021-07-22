@@ -20,6 +20,7 @@ class CreateApplicationsTable extends Migration
             $table->integer('motorcycle_id');
             $table->integer('plan_id');
             $table->string('apply_date');
+            $table->string('start_date');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

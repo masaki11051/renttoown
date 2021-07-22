@@ -1,20 +1,35 @@
 @extends('R2O.index')
 <style>
-   th {
-      background-color: black;
-      color: white;
-      padding: 5px 30px;
-    }
-    td {
-      border: 1px solid black;
-      padding: 5px 30px;
-      text-align: center;
-    }
+
 
 </style>
 @section('title', 'Customer Search')
 
 @section('main_content')
+<nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="toppage">Top page</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
   <form action="/find" method="POST" class="row g-3 needs-validation" novalidate>
         @csrf
         <div class="col-md-4">
@@ -30,36 +45,4 @@
           <button type="submit" class="btn btn-primary">Search</button>
         </div>
   </form>
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>name</th>
-      <th>age</th>
-      <th>phone_number</th>
-      <th>city</th>
-      <th>mail</th>
-    </tr>
-    @if (isset($data))
-    <tr>
-      <td>
-      {{$data->id}}
-    </td>
-    <td>
-      {{$data->name}}
-    </td>
-    <td>
-      {{$data->age}}
-    </td>
-    <td>
-      {{$data->phone_number}}
-    </td>
-    <td>
-      {{$data->city}}
-    </td>
-    <td>
-      {{$data->mail}}
-    </td>
-    </tr>
-  </table>
-  @endif
-  @endsection
+    @endsection

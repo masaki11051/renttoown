@@ -15,7 +15,7 @@ class CreatePlansTable extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->string('start_date');
+            $table->string('plan_name');
             $table->string('interest_rate');
             $table->string('tenure');
             $table->timestamp('created_at')->useCurrent()->nullable();

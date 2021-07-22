@@ -3,6 +3,30 @@
 
 </style>
 @section('main_content')
+      <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="toppage">Top page</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
       @if (count($errors) > 0)
           <ul>
             @foreach ($errors->all() as $error)
@@ -96,6 +120,10 @@
         </div>
 
         <div class="col-md-6">
+          <label for="inputunit_id" class="form-label" >Unit ID</label>
+          <input type="text" class="form-control" id="unit_id" name="unit_id" placeholder="Honda/xxx/01-30-2021"  required value="{{ old('unit_id') }}" is-invalid　required>
+        </div>
+        <div class="col-md-6">
           <label for="inputprice" class="form-label" >Price</label>
           <input type="price" class="form-control" id="inputprice" name="price" placeholder="60000" required value="{{ old('price') }}" is-invalid　required>
         </div>
@@ -106,7 +134,7 @@
         <div class="col-md-6">
           <label for="inputmotorcycle_registration_number" class="form-label">Motorcycle_registration_number</label>
           <input type="text" class="form-control" id="inputCity" name="motorcycle_registration_number" required value="{{ old('motorcycle_registration_number') }}"required>
-        </div>
+        </div><br>
         <div class="col-12 row-3" style="line-height:4rem">
           <button type="submit" class="btn btn-primary">Register</button>
         </div>

@@ -19,8 +19,19 @@ class Customer extends Model
         'mail' => 'required|regex:/^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+$/',
     );
 
-    public function customers()
+    public function attachments()
     {
-       
+
+        return $this->hasMany('App\Attachment', 'parent_id', 'id')
+            ->where('model', self::class);  // 「App\Customer」のものだけ取得
+
+    }
+    public function getData()
+    {
+        return $this->id . ':' . $this->name;
+    }
+    public function applications()
+    {
+        return $this->hasMany('App\Models\application');
     }
 }

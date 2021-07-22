@@ -9,24 +9,73 @@ class application extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['apply_date', 'customer_id','company_id', 'motorcycle_id', 'plan_id'];
+    protected $fillable = ['customer_id','apply_date', 'start_date','company_id', 'motorcycle_id','plan_id'];
 
     public static $applicationrules = array(
-        'apply_date' => 'required',
         'customer_id' => 'required',
+        'apply_date' => 'required',
+        'start_date' => 'required',
         'company_id' => 'required',
         'motorcycle_id' => 'required',
         'plan_id' => 'required',
     );
+//company-----------------------------------------------------
     public function company()
     {
-        return $this->belongsTo('App\Models\customer');
         return $this->belongsTo('App\Models\company');
+    }
+    public function getcompanyname()
+    {
+        return optional($this->company)->name;
+    }
+    public function getcompanyphonenumber()
+    {
+        return optional($this->company)->phone_number;
+    }
+    public function getcompanyaddress()
+    {
+        return optional($this->company)->address;
+    }
+//motorcycle-----------------------------------------------------
+    public function motorcycle()
+    {
         return $this->belongsTo('App\Models\motorcycle');
+    }
+    public function getmotorcycleid()
+    {
+        return optional($this->motorcycle)->id;
+    }
+    public function getmotorcycleunit_id()
+    {
+        return optional($this->motorcycle)->unit_id;
+    }
+    public function getmotorcycleprice()
+    {
+        return optional($this->motorcycle)->price;
+    }
+    public function getmotorcyclemotorcycle_certificate()
+    {
+        return optional($this->motorcycle)->motorcycle_certificate;
+    }
+    public function getmotorcyclemotorcycle_registration_number()
+    {
+        return optional($this->motorcycle)->motorcycle_registration_number;
+    }
+    //plan-----------------------------------------------------
+    public function plan()
+    {
         return $this->belongsTo('App\Models\plan');
     }
-    public function getData()
+    public function getplan_id()
     {
-            return $this ->id;
+        return optional($this->plan)->id;
+    }
+    public function getinterest_rate()
+    {
+        return optional($this->plan)->interest_rate;
+    }
+    public function gettenure()
+    {
+        return optional($this->plan)->tenure;
     }
 }
