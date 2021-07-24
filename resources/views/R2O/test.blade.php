@@ -80,10 +80,12 @@
     <tr>
       @if ($data->applications != null)
         @foreach ($data->applications as $applicationinfo)
+        @if ($loop->index == 1)
       <th scope="row">{{ $applicationinfo->id}}</th>
       <td>{{ $applicationinfo->apply_date }}</td>
       <td>{{ $applicationinfo->start_date}}</td>
     </tr>
+    @endif
     @endforeach
     @endif
   </tbody>
@@ -103,10 +105,12 @@
     <tr>
       @if ($data->applications != null)
         @foreach ($data->applications as $companyinfo)
+        @if ($loop->index == 0)
       <th scope="row">{{ $companyinfo->getcompanyname() }}</th>
       <td>{{ $companyinfo->getcompanyphonenumber() }}</td>
       <td>{{ $companyinfo->getcompanyaddress() }}</td>
     </tr>
+    @endif
     @endforeach
     @endif
   </tbody>
@@ -154,6 +158,7 @@
       <td>{{ $planinfo->getinterest_rate() }}% monthly</td>
       <td>{{ $planinfo->gettenure() }} years</td>
       <td>{{ $planinfo->start_date}}</td>
+      <td><button type="button" class="btn btn-outline-danger">Schedule Calculation</button></td>
     </tr>
     @endforeach
     @endif

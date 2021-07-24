@@ -91,7 +91,7 @@ class R2O_Controller extends Controller
                 'input' => $request->input_name, $request->input_age,
                 'data' => $data
             ];
-            return view('R2O.test', $param,['applications' => $applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
+            return view('R2O.test2', $param,['applications' => $applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
         }else{
             return view('R2O.error');
         };
