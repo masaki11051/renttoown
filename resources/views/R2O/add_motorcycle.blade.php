@@ -3,30 +3,15 @@
 
 </style>
 @section('main_content')
-      <nav class="navbar navbar-dark bg-primary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="toppage">Top page</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+       <div class="p-4">
+          <nav class="navbar navbar-dark bg-primary">
+                   <div class="container-fluid">
+                     <a class="navbar-brand" href="{{ url('/') }}">Top page</a>
+                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                       <span class="navbar-toggler-icon"></span>
+                     </button>
+                   </div>
+                 </nav>
       @if (count($errors) > 0)
           <ul>
             @foreach ($errors->all() as $error)
@@ -35,7 +20,7 @@
           </ul>
       @endif
       <h1>Motorcycle Registration Form</h1>
-      <form action="/motorcycle_add" method="POST" class="needs-validation"　novalidate>
+      <form action="/register_motorcycle" method="POST" class="needs-validation" novalidate>
         @csrf
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="brand" id="Honda" value="Honda" onchange="myfunc(this.value)" required>
@@ -121,7 +106,7 @@
 
         <div class="col-md-6">
           <label for="inputunit_id" class="form-label" >Unit ID</label>
-          <input type="text" class="form-control" id="unit_id" name="unit_id" placeholder="Honda/xxx/01-30-2021"  required value="{{ old('unit_id') }}" is-invalid　required>
+          <input type="text" class="form-control" id="unit_id" name="unit_id" placeholder="Honda/xxx/11111(Motorcycle_certificate)"  required value="{{ old('unit_id') }}" is-invalid　required>
         </div>
         <div class="col-md-6">
           <label for="inputprice" class="form-label" >Price</label>
@@ -134,11 +119,21 @@
         <div class="col-md-6">
           <label for="inputmotorcycle_registration_number" class="form-label">Motorcycle_registration_number</label>
           <input type="text" class="form-control" id="inputCity" name="motorcycle_registration_number" required value="{{ old('motorcycle_registration_number') }}"required>
+        </div>
+        <div class="col-md-6">
+           <label for="inputlocationname" class="form-label" >Stored Branch Name</label>
+            <select class="form-select" id="location_id" name="location_id">
+             <option selected>Select one branch from the menu</option>
+             @foreach ($locations as $location)
+             <option value="{{$location->id}}">{{$location->location_name}}</option>
+             @endforeach
+            </select>
         </div><br>
         <div class="col-12 row-3" style="line-height:4rem">
           <button type="submit" class="btn btn-primary">Register</button>
         </div>
       </form>
+      </div>
       <script src="{{ asset('/js/motorcycle_add.js') }}">
       </script>
       @endsection

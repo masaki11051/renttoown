@@ -21,6 +21,7 @@ class CreateApplicationsTable extends Migration
             $table->integer('plan_id');
             $table->string('apply_date');
             $table->string('start_date');
+            $table->integer('status');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

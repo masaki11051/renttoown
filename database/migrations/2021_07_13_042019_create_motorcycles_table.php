@@ -15,6 +15,7 @@ class CreateMotorcyclesTable extends Migration
     {
         Schema::create('motorcycles', function (Blueprint $table) {
             $table->id();
+            $table->integer('location_id');
             $table->string('brand');
             $table->string('motorcycle_type');
             $table->string('unit_id');

@@ -6,30 +6,15 @@
 @section('title', 'Customer Infomation')
 
 @section('main_content')
-<nav class="navbar navbar-dark bg-primary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="toppage">Top page</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+ <div class="p-4">
+    <nav class="navbar navbar-dark bg-primary">
+             <div class="container-fluid">
+               <a class="navbar-brand" href="{{ url('/') }}">Top page</a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+               </button>
+             </div>
+           </nav>
   <div class="p-1 mb-2 bg-primary text-white">Customer info</div>
   <table class="table">
   <thead>
@@ -43,7 +28,6 @@
     </tr>
   </thead>
     <tbody>
-    @if (isset($data))
     <tr>
       <td>
       {{$data->id}}
@@ -65,7 +49,6 @@
     </td>
     </tr>
   </table>
-  @endif
   <br>
 <div class="p-1 mb-2 bg-secondary text-white">FIrst Application Info</div>
   <table class="table">
@@ -90,8 +73,6 @@
     @endif
   </tbody>
 </table>
-
-
 <div class="p-1 mb-2 bg-primary text-white">Company info</div>
   <table class="table">
   <thead>
@@ -164,6 +145,7 @@
     @endif
   </tbody>
 </table>
+</div>
   @endsection
 
 

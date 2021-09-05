@@ -3,30 +3,15 @@
 
 </style>
 @section('main_content')
-      <nav class="navbar navbar-dark bg-primary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="toppage">Top page</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+ <div class="p-4">
+         <nav class="navbar navbar-dark bg-primary">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="{{ url('/') }}">Top page</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  </div>
+                </nav>
       @if (count($errors) > 0)
           <ul>
             @foreach ($errors->all() as $error)
@@ -35,7 +20,7 @@
           </ul>
       @endif
       <h1>Company Registration Form</h1>
-      <form action="/company_add" method="POST" class="row g-3 needs-validation">
+      <form action="/register_company" method="POST" class="row g-3 needs-validation">
         @csrf
         <div class="col-md-6">
           <label for="inputname" class="form-label">Company name</label>
@@ -53,6 +38,7 @@
           <button type="submit" class="btn btn-primary">Register</button>
         </div>
       </form>
+      </div>
       <script>
       </script>
       @endsection

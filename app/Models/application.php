@@ -9,16 +9,42 @@ class application extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_id','apply_date', 'start_date','company_id', 'motorcycle_id','plan_id'];
+    protected $fillable = ['customer_id','apply_date', 'start_date','status','company_id', 'motorcycle_id','plan_id'];
 
     public static $applicationrules = array(
         'customer_id' => 'required',
         'apply_date' => 'required',
         'start_date' => 'required',
+        'status' => 'required',
         'company_id' => 'required',
         'motorcycle_id' => 'required',
         'plan_id' => 'required',
     );
+    //customer-----------------------------------------------------
+    public function customer()
+    {
+        return $this->belongsTo('App\Models\customer');
+    }
+    public function getcustomername()
+    {
+        return optional($this->customer)->name;
+    }
+    public function getcustomerphonenumber()
+    {
+        return optional($this->customer)->phone_number;
+    }
+    public function getcustomerage()
+    {
+        return optional($this->customer)->age;
+    }
+    public function getcustomercity()
+    {
+        return optional($this->customer)->city;
+    }
+    public function getcustomermail()
+    {
+        return optional($this->customer)->mail;
+    }
 //company-----------------------------------------------------
     public function company()
     {
@@ -44,6 +70,10 @@ class application extends Model
     public function getmotorcycleid()
     {
         return optional($this->motorcycle)->id;
+    }
+    public function getlocationid()
+    {
+        return optional($this->motorcycle)->location_id;
     }
     public function getmotorcycleunit_id()
     {
@@ -77,5 +107,10 @@ class application extends Model
     public function gettenure()
     {
         return optional($this->plan)->tenure;
+    }
+    //repayment-----------------------------------------------------
+    public function repayments()
+    {
+        return $this->hasMany('App\Models\repayment');
     }
 }

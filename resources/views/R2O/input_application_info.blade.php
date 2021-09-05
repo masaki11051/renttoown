@@ -3,40 +3,60 @@
 
 </style>
 @section('main_content')
-      <nav class="navbar navbar-dark bg-primary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="toppage">Top page</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+       <div class="p-4">
+          <nav class="navbar navbar-dark bg-primary">
+                   <div class="container-fluid">
+                     <a class="navbar-brand" href="{{ url('/') }}">Top page</a>
+                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                       <span class="navbar-toggler-icon"></span>
+                     </button>
+                   </div>
+                 </nav>
       @if (count($errors) > 0)
           <ul>
             @foreach ($errors->all() as $error)
-              <h1><font color="red">{{$error}}</font></h1>
+              <h1><color="red">{{$error}}</h1>
             @endforeach
           </ul>
       @endif
+       <div class="p-1 mb-2 bg-secondary text-white">Customer info</div>
+        <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">name</th>
+            <th scope="col">age</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">city</th>
+            <th scope="col">mail</th>
+          </tr>
+        </thead>
+          <tbody>
+          <tr>
+            <td>
+            {{$data->id}}
+          </td>
+          <td>
+            {{$data->name}}
+          </td>
+          <td>
+            {{$data->age}}
+          </td>
+          <td>
+            {{$data->phone_number}}
+          </td>
+          <td>
+            {{$data->city}}
+          </td>
+          <td>
+            {{$data->mail}}
+          </td>
+          </tr>
+        </table>
+        <br>
       <h1>Registration Form</h1>
-      <form action="/application_add" method="POST" class="needs-validation">
-        @csrf
+      <form action="/register_application_info" method="POST" class="needs-validation">
+       @csrf
         <div class="col-md-6">
           <label for="inputapply_date" class="form-label" >Apply_Date</label>
           <input type="date" class="form-control" id="apply_date" name="apply_date" placeholder="YYYY-MM-DD" required value="{{ old('apply_date') }}" min="2022-01-01" max="2080-12-31" is-invalid　required>
@@ -47,16 +67,6 @@
           <input type="date" class="form-control" id="start_date" name="start_date" placeholder="YYYY-MM-DD" required value="{{ old('start_date') }}" min="2022-01-01" max="2080-12-31" is-invalid　required>
         </div><br>
 
-          <div class="col-md-6">
-          <label for="inputcustomer_id" class="form-label" >Customer</label>
-          <select class="form-select" id="customer_id" name="customer_id">
-            <option selected>Select the customer from the menu</option>
-            @foreach ($customers as $customer)
-            <option value="{{$customer->id}}">{{$customer->name}}</option>
-            @endforeach
-          </select>
-        </div><br>
-        
         <div class="col-md-6">
           <label for="inputcompany" class="form-label" >Company</label>
           <select class="form-select" id="company_id" name="company_id">
@@ -84,10 +94,13 @@
             @endforeach
           </select>
         </div><br>
+          <input type="hidden" id="status" name="status" value="0">
+          <input type="hidden" id="customer_id" name="customer_id" value='{{$data->id}}'>
         <div class="col-12 row-3" style="line-height:4rem">
           <button type="submit" class="btn btn-primary">Register</button>
         </div>
       </form>
+      </div>
       <script src="{{ asset('/js/application_add.js') }}">
       </script>
       @endsection
