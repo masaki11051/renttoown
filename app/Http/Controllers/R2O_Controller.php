@@ -260,7 +260,7 @@ class R2O_Controller extends Controller
         $this->validate($request, motorcycle::$motorcyclerules);
         $form = $request->all();
         motorcycle::create($form);
-        return view('R2O.motorcycle_add',["locations" => $locations]);
+        return view('R2O.add_motorcycle',["locations" => $locations]);
     }
 //register plan///////////////////////////////////////////////////////////////////////////////////////////////////////
     public function add_plan(Request $request)
@@ -326,7 +326,6 @@ class R2O_Controller extends Controller
    public function detail_application_info(Request $request)
    {
        $data = customer::where('id', $request->customer_id)->first();
-       $applications = application::all();
        $active_application = application::where('customer_id', $request->customer_id)
            ->where('status', 1)
            ->first();
@@ -337,7 +336,7 @@ class R2O_Controller extends Controller
            $companies = company::all();
            $motorcycles = motorcycle::all();
            $plans = plan::all();
-           return view('R2O.detail_application_info', ['data' => $data, 'applications' => $applications, 'active_application' => $active_application, 'non_active_applications' => $non_active_applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
+           return view('R2O.detail_application_info', ['data' => $data, 'active_application' => $active_application, 'non_active_applications' => $non_active_applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
        }else{
            return view('R2O.error');}
    }
@@ -366,7 +365,7 @@ class R2O_Controller extends Controller
             ->first();
         if (isset($data)) {
             $uploads = attachment::where("customer_id", $data->id)->get();
-            return view('R2O.contract_custinfo', ["data" => $data, 'uploads' => $uploads, 'applications' => $applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
+            return view('R2O.basic_application_info', ["data" => $data, 'uploads' => $uploads, 'applications' => $applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
         } else {
             return view('R2O.error');
         }
@@ -377,83 +376,129 @@ class R2O_Controller extends Controller
         $companies = company::all();
         $data = customer::where('id',$request->customer_id)->first();
         $applications = application::where('customer_id',$request->customer_id)
-                                    ->first();
+            ->where('status', 1)
+            ->first();
         return view('R2O.edit_company',['data' =>$data,'companies' => $companies,'applications' => $applications]);
     }
     public function update_company(Request $request)
     {
         $form=$request->all();
-        $data = customer::where('id',$request->customer_id)->first();
-        $applications = application::where('customer_id',$request->customer_id)
+        application::where('id',$request->id)
                                     ->first()
                                     ->update($form);
-        return view('R2O.contract_detail',['data' =>$data,'applications' => $applications]);
-    }
+        $applications = application::all();
+        $data = customer::where('id',$request->customer_id)->first();
+        $active_application = application::where('customer_id', $request->customer_id)
+            ->where('status', 1)
+            ->first();
+        $non_active_applications = application::where('customer_id', $request->customer_id)
+            ->where('status', 2)
+            ->get();
+        if (isset($active_application)||($non_active_applications)) {
+            $companies = company::all();
+            $motorcycles = motorcycle::all();
+            $plans = plan::all();
+            return view('R2O.detail_application_info', ['data' => $data, 'applications' => $applications, 'active_application' => $active_application, 'non_active_applications' => $non_active_applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
+        }else{
+            return view('R2O.error');}}
 //edit application info///////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function edit_application(Request $request)
     {
         $companies = company::all();
         $data = customer::where('id',$request->customer_id)->first();
         $applications = application::where('customer_id',$request->customer_id)
+            ->where('status', 1)
             ->first();
         return view('R2O.edit_application',['data' =>$data,'companies' => $companies,'applications' => $applications]);
     }
     public function update_application(Request $request)
     {
         $form=$request->all();
-        $data = customer::where('id',$request->customer_id)->first();
-        $applications = application::where('customer_id',$request->customer_id)
+        application::where('customer_id',$request->customer_id)
+            ->where('status', 1)
             ->first()
             ->update($form);
-        return view('R2O.contract_detail',['data' =>$data,'applications' => $applications]);
+        $data = customer::where('id', $request->customer_id)->first();
+        $applications = application::all();
+        $active_application = application::where('customer_id', $request->customer_id)
+            ->where('status', 1)
+            ->first();
+        $non_active_applications = application::where('customer_id', $request->customer_id)
+            ->where('status', 2)
+            ->get();
+        if (isset($active_application)||($non_active_applications)) {
+            $companies = company::all();
+            $motorcycles = motorcycle::all();
+            $plans = plan::all();
+            return view('R2O.detail_application_info', ['data' => $data, 'applications' => $applications, 'active_application' => $active_application, 'non_active_applications' => $non_active_applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
+        }else{
+            return view('R2O.error');}
     }
+//edit motorcycle info///////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function restore_selected_motorcycle(Request $request)
     {
-        $data = customer::where('id',$request->customer_id)->first();
+        $data = customer::where('id',$request->customer_id)
+            ->first();
         $applications = application::where('customer_id',$data->id)
-                                    ->first();
+            ->where('status', 1)
+            ->first();
         $selected_motorcycles = motorcycle::where('id', $applications->motorcycle_id)
-                                 ->first();
+            ->first();
         $motorcycles = motorcycle::all();
         $locations = location::where('id', '>', 1)
-                                ->get();
+            ->get();
         return view('R2O.restore_selected_motorcycle',['data' =>$data,'motorcycles' => $motorcycles,'selected_motorcycles' => $selected_motorcycles,'locations' => $locations,'applications' => $applications]);
     }
     public function update_location_for_selected_motorcycle(Request $request)
     {
         $data = customer::where('id',$request->customer_id)->first();
         $applications = application::where('customer_id',$data->id)
+            ->where('status', 1)
             ->first();
         $form = $request->all();
         motorcycle::where('id', $request->id)
-                                ->first()
-                                ->update($form);
+            ->first()
+            ->update($form);
         $motorcycles = motorcycle::where('location_id', '>', 1)
             ->whereNotIn('id', [$request->id])
             ->get();
         return view('R2O.edit_motorcycle',['data' =>$data,'applications' => $applications,'motorcycles' => $motorcycles,]);
     }
-//edit motorcycle info///////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function edit_motorcycle(Request $request)
     {
         $motorcycles = motorcycle::where('location_id', '>', 1)
-                                    ->get();
+            ->get();
         $data = customer::where('id',$request->customer_id)->first();
         $applications = application::where('customer_id',$request->customer_id)
-                                    ->first();
+            ->where('status', 1)
+            ->first();
         return view('R2O.edit_motorcycle',['data' =>$data,'motorcycles' => $motorcycles,'applications' => $applications]);
     }
     public function update_motorcycle(Request $request)
     {
         $form=$request->all();
-        $data = customer::where('id',$request->customer_id)->first();
-        $applications = application::where('customer_id',$request->customer_id)
+        application::where('customer_id',$request->customer_id)
+            ->where('status', 1)
             ->first()
             ->update($form);
         motorcycle::where('id', $request->motorcycle_id)
                                     ->first()
                                     ->update(([ 'location_id' => '1' ]));
-        return view('R2O.contract_detail',['data' =>$data,'applications' => $applications]);
+
+        $data = customer::where('id', $request->customer_id)->first();
+        $active_application = application::where('customer_id', $request->customer_id)
+            ->where('status', 1)
+            ->first();
+        $non_active_applications = application::where('customer_id', $request->customer_id)
+            ->where('status', 2)
+            ->get();
+        if (isset($active_application)||($non_active_applications)) {
+            $companies = company::all();
+            $motorcycles = motorcycle::all();
+            $plans = plan::all();
+            return view('R2O.detail_application_info', ['data' => $data, 'active_application' => $active_application, 'non_active_applications' => $non_active_applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
+        }else{
+            return view('R2O.error');}
     }
 //edit plan info///////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function edit_plan(Request $request)
@@ -461,17 +506,32 @@ class R2O_Controller extends Controller
         $plans = plan::all();
         $data = customer::where('id',$request->customer_id)->first();
         $applications = application::where('customer_id',$request->customer_id)
+            ->where('status', 1)
             ->first();
         return view('R2O.edit_plan',['data' =>$data,'applications' => $applications,'plans' => $plans]);
     }
     public function update_plan(Request $request)
     {
         $form=$request->all();
-        $data = customer::where('id',$request->customer_id)->first();
-        $applications = application::where('customer_id',$request->customer_id)
+        application::where('customer_id',$request->customer_id)
+            ->where('status', 1)
             ->first()
             ->update($form);
-        return view('R2O.contract_detail',['data' =>$data,'applications' => $applications]);
+        $data = customer::where('id', $request->customer_id)->first();
+        $active_application = application::where('customer_id', $request->customer_id)
+            ->where('status', 1)
+            ->first();
+        $non_active_applications = application::where('customer_id', $request->customer_id)
+            ->where('status', 2)
+            ->get();
+        if (isset($active_application)||($non_active_applications)) {
+            $companies = company::all();
+            $motorcycles = motorcycle::all();
+            $plans = plan::all();
+            return view('R2O.detail_application_info', ['data' => $data, 'active_application' => $active_application, 'non_active_applications' => $non_active_applications, 'companies' => $companies, 'motorcycles' => $motorcycles, 'plans' => $plans]);
+        }else{
+            return view('R2O.error');}
+        return view('R2O.detail_application_info',['data' =>$data,'applications' => $applications]);
     }
 //edit repayment info///////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function repayments_info_of_application(Request $request)

@@ -46,7 +46,7 @@ Route::post('/select_info_for_returned_motorcycle', 'App\Http\Controllers\R2O_Co
 Route::post('/update_info_for_returned_motorcycle', 'App\Http\Controllers\R2O_Controller@update_info_for_returned_motorcycle');
 //register motorcycle/////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/add_motorcycle', 'App\Http\Controllers\R2O_Controller@add_motorcycle');
-Route::post('/register_motorcycle', 'App\Http\Controllers\R2O_Controller@mregister_motorcycle');
+Route::post('/register_motorcycle', 'App\Http\Controllers\R2O_Controller@register_motorcycle');
 //register plan/////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/add_plan', 'App\Http\Controllers\R2O_Controller@add_plan');
 Route::post('/register_plan', 'App\Http\Controllers\R2O_Controller@register_plan');
