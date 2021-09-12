@@ -11,7 +11,7 @@
             </div>
         </nav>
         <div class="col-md-6">
-            <form action="/update_application" method="post" class="needs-validation">
+            <form action="/update_application_before_registrating_repayments" method="post">
                 @csrf
                 <div class="col-md-6">
                     <label for="apply_date" class="form-label">Apply_Date</label>

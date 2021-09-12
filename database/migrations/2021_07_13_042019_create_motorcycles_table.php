@@ -20,8 +20,8 @@ class CreateMotorcyclesTable extends Migration
             $table->string('motorcycle_type');
             $table->string('unit_id');
             $table->integer('price');
-            $table->string('motorcycle_certificate');
-            $table->string('motorcycle_registration_number');
+            $table->string('motorcycle_certificate')->unique();
+            $table->string('motorcycle_registration_number')->unique();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

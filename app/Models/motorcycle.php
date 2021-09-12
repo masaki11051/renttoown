@@ -17,8 +17,8 @@ class motorcycle extends Model
         'motorcycle_type' => 'required',
         'unit_id' => 'required',
         'price' => 'required|integer|digits_between:4,5',
-        'motorcycle_certificate' => 'required',
-        'motorcycle_registration_number' => 'required',
+        'motorcycle_certificate' => 'required|unique:motorcycles',
+        'motorcycle_registration_number' => 'required|unique:motorcycles',
     );
     public function applications()
     {

@@ -25,6 +25,8 @@ Route::get('/test_calculation', 'App\Http\Controllers\R2O_Controller@test_calcul
 //register customer info //////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/input_customer_info', 'App\Http\Controllers\R2O_Controller@input_customer_info');
 Route::post('/register_customer_info', 'App\Http\Controllers\R2O_Controller@register_customer_info');
+Route::get('/register_customer_info', 'App\Http\Controllers\R2O_Controller@input_customer_info');
+//Validationエラー時の受取用Getメソッド
 Route::get('/select_scan_copies', 'App\Http\Controllers\R2O_Controller@select_scan_copies');
 Route::post('/upload_scan_copies', 'App\Http\Controllers\R2O_Controller@upload_scan_copies');
 //register application info//////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,27 +37,45 @@ Route::post('/register_application_info', 'App\Http\Controllers\R2O_Controller@r
 Route::get('/customer_search_for_repayment', 'App\Http\Controllers\R2O_Controller@customer_search_for_repayment');
 Route::post('/basic_customer_info_for_repayment', 'App\Http\Controllers\R2O_Controller@basic_customer_info_for_repayment');
 Route::post('/detail_customer_info_for_repayment', 'App\Http\Controllers\R2O_Controller@detail_customer_info_for_repayment');
+Route::post('/edit_company_before_registrating_repayments', 'App\Http\Controllers\R2O_Controller@edit_company_before_registrating_repayments');
+Route::post('/update_company_before_registrating_repayments', 'App\Http\Controllers\R2O_Controller@update_company_before_registrating_repayments');
+Route::post('/edit_application_before_registrating_repayments', 'App\Http\Controllers\R2O_Controller@edit_application_before_registrating_repayments');
+Route::post('/update_application_before_registrating_repayments', 'App\Http\Controllers\R2O_Controller@update_application_before_registrating_repayments');
+Route::post('/restore_selected_motorcycle_before_registrating_repayments', 'App\Http\Controllers\R2O_Controller@restore_selected_motorcycle_before_registrating_repayments');
+Route::post('/update_location_for_selected_motorcycle_before_registrating_repayments', 'App\Http\Controllers\R2O_Controller@update_location_for_selected_motorcycle_before_registrating_repayments');
+Route::post('/edit_motorcycle_before_registrating_repayments', 'App\Http\Controllers\R2O_Controller@edit_motorcycle_before_registrating_repayments');
+Route::post('/update_motorcycle_before_registrating_repayments', 'App\Http\Controllers\R2O_Controller@update_motorcycle_before_registrating_repayments');
+Route::post('/edit_plan_before_registrating_repayments', 'App\Http\Controllers\R2O_Controller@edit_plan_before_registrating_repayments');
+Route::post('/update_plan_before_registrating_repayments', 'App\Http\Controllers\R2O_Controller@update_plan_before_registrating_repayments');
 Route::post('/register_repayment_info', 'App\Http\Controllers\R2O_Controller@register_repayment_info');
 //register supplemental docs//////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/customer_search_for_supplementalDocs', 'App\Http\Controllers\R2O_Controller@customer_search_for_supplementalDocs');
 Route::post('/select_supplementalDocs', 'App\Http\Controllers\R2O_Controller@select_supplementalDocs');
 Route::post('/upload_supplementalDocs', 'App\Http\Controllers\R2O_Controller@upload_supplementalDocs');
-//returned motorcycle/////////////////////////////////////////////////////////////////////////////////////////////
+//return or lost motorcycle/////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/return_or_lost_motorcycle_menu', 'App\Http\Controllers\R2O_Controller@return_or_lost_motorcycle_menu');
 Route::get('/customer_search_for_returned_motorcycle', 'App\Http\Controllers\R2O_Controller@customer_search_for_returned_motorcycle');
 Route::post('/select_info_for_returned_motorcycle', 'App\Http\Controllers\R2O_Controller@select_info_for_returned_motorcycle');
 Route::post('/update_info_for_returned_motorcycle', 'App\Http\Controllers\R2O_Controller@update_info_for_returned_motorcycle');
+Route::get('/customer_search_for_lost_motorcycle', 'App\Http\Controllers\R2O_Controller@customer_search_for_lost_motorcycle');
+Route::post('/select_info_for_lost_motorcycle', 'App\Http\Controllers\R2O_Controller@select_info_for_lost_motorcycle');
+Route::post('/update_info_for_lost_motorcycle', 'App\Http\Controllers\R2O_Controller@update_info_for_lost_motorcycle');
 //register motorcycle/////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/add_motorcycle', 'App\Http\Controllers\R2O_Controller@add_motorcycle');
 Route::post('/register_motorcycle', 'App\Http\Controllers\R2O_Controller@register_motorcycle');
-//register plan/////////////////////////////////////////////////////////////////////////////////////////////
-Route::get('/add_plan', 'App\Http\Controllers\R2O_Controller@add_plan');
-Route::post('/register_plan', 'App\Http\Controllers\R2O_Controller@register_plan');
-//register company/////////////////////////////////////////////////////////////////////////////////////////////
-Route::get('/add_company', 'App\Http\Controllers\R2O_Controller@add_company');
-Route::post('/register_company', 'App\Http\Controllers\R2O_Controller@register_company');
+Route::get('/register_motorcycle', 'App\Http\Controllers\R2O_Controller@/add_motorcycle');
+//Validationエラー時の受取用Getメソッド
 //register location/////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/add_location', 'App\Http\Controllers\R2O_Controller@add_location');
 Route::post('/register_location', 'App\Http\Controllers\R2O_Controller@register_location');
+Route::get('/register_location', 'App\Http\Controllers\R2O_Controller@add_location');
+//Validationエラー時の受取用Getメソッド
+//register company/////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/add_company', 'App\Http\Controllers\R2O_Controller@add_company');
+Route::post('/register_company', 'App\Http\Controllers\R2O_Controller@register_company');
+//register plan/////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/add_plan', 'App\Http\Controllers\R2O_Controller@add_plan');
+Route::post('/register_plan', 'App\Http\Controllers\R2O_Controller@register_plan');
 
 
 //search application/////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,23 +97,26 @@ Route::post('/update_plan', 'App\Http\Controllers\R2O_Controller@update_plan');
 Route::post('/repayments_info_of_application', 'App\Http\Controllers\R2O_Controller@repayments_info_of_application');
 //search all customers//////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/all_customers_info', 'App\Http\Controllers\R2O_Controller@all_customers_info');
-Route::post('/edit_customer_info', 'App\Http\Controllers\R2O_Controller@edit_customer_info');
+Route::get('/edit_customer_info', 'App\Http\Controllers\R2O_Controller@edit_customer_info');
 Route::post('/update_customer_info', 'App\Http\Controllers\R2O_Controller@update_customer_info');
 //search all motorcycles//////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/all_motorcycles_info', 'App\Http\Controllers\R2O_Controller@all_motorcycles_info');
-Route::post('/edit_motorcycle_info', 'App\Http\Controllers\R2O_Controller@edit_motorcycle_info');
+Route::get('/edit_motorcycle_info', 'App\Http\Controllers\R2O_Controller@edit_motorcycle_info');
 Route::post('/update_motorcycle_info', 'App\Http\Controllers\R2O_Controller@update_motorcycle_info');
-//search all plans//////////////////////////////////////////////////////////////////////////////////////////////////////
-Route::get('/all_plans_info', 'App\Http\Controllers\R2O_Controller@all_plans_info');
-Route::post('/edit_plan_info', 'App\Http\Controllers\R2O_Controller@edit_plan_info');
-Route::post('/update_plan_info', 'App\Http\Controllers\R2O_Controller@update_plan_info');
+//search all locations//////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/all_locations_info', 'App\Http\Controllers\R2O_Controller@all_locations_info');
+Route::get('/edit_location_info', 'App\Http\Controllers\R2O_Controller@edit_location_info');
+Route::post('/update_location_info', 'App\Http\Controllers\R2O_Controller@update_location_info');
 //search all companies//////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/all_companies_info', 'App\Http\Controllers\R2O_Controller@all_companies_info');
-Route::post('/edit_company_info', 'App\Http\Controllers\R2O_Controller@edit_company_info');
+Route::get('/edit_company_info', 'App\Http\Controllers\R2O_Controller@edit_company_info');
 Route::post('/update_company_info', 'App\Http\Controllers\R2O_Controller@update_company_info');
+//search all plans//////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/all_plans_info', 'App\Http\Controllers\R2O_Controller@all_plans_info');
+Route::get('/edit_plan_info', 'App\Http\Controllers\R2O_Controller@edit_plan_info');
+Route::post('/update_plan_info', 'App\Http\Controllers\R2O_Controller@update_plan_info');
 //search all repayments//////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/all_repayments_info', 'App\Http\Controllers\R2O_Controller@all_repayments_info');
-
 
 
 //repayment_management_menu/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,6 +125,7 @@ Route::get('/select_repayments_info', 'App\Http\Controllers\R2O_Controller@selec
 Route::post('/update_repayment_info_for_delay', 'App\Http\Controllers\R2O_Controller@update_repayment_info_for_delay');
 Route::post('/update_repayment_info_for_paid', 'App\Http\Controllers\R2O_Controller@update_repayment_info_for_paid');
 //search_repayments_info/////////////////////////////////////////////////////////////////////////////////////////////////
-Route::get('/search_repayments_info', 'App\Http\Controllers\R2O_Controller@search_repayments_info');
+Route::get('/customer_search_for_wrong_repayment', 'App\Http\Controllers\R2O_Controller@customer_search_for_wrong_repayment');
+Route::post('/select_wrong_repayments_info', 'App\Http\Controllers\R2O_Controller@select_wrong_repayments_info');
 Route::post('/edit_repayment_info', 'App\Http\Controllers\R2O_Controller@edit_repayment_info');
 Route::post('/update_repayment_info', 'App\Http\Controllers\R2O_Controller@update_repayment_info');

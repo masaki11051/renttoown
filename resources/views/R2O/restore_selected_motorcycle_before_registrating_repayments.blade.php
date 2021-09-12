@@ -11,7 +11,8 @@
             </div>
         </nav>
         <div class="col-md-12">
-            <form action="/update_location_for_selected_motorcycle" method="post" class="needs-validation">
+            <label for="edit_motorcycle" class="form-label">Restore selected motorcycle by mistake first</label>
+            <form action="/update_location_for_selected_motorcycle_before_registrating_repayments" method="post">
                 @csrf
                 <table class="table table-hover table table-bordered">
                     <thead>
@@ -29,14 +30,16 @@
                         <td>{{ $selected_motorcycles->unit_id}}</td>
                         <td>{{ $selected_motorcycles->motorcycle_certificate}}</td>
                         <td>{{ $selected_motorcycles->motorcycle_registration_number}}</td>
-                        <td><select class="form-select" id="location_id" name="location_id" required>
+                        <td>
+                            <select class="form-select" id="location_id" name="location_id">
                                 <option value="" style="display: none;">Choose right location for wrongly selected
                                     motorcycle
                                 </option>
                                 @foreach ($locations as $location)
                                     <option value="{{$location->id}}">{{$location->location_name}}</option>
                                 @endforeach
-                            </select></td>
+                            </select>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

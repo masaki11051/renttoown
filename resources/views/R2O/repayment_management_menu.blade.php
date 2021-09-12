@@ -4,7 +4,8 @@
         <nav class="navbar navbar-dark bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">Top page</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
@@ -23,7 +24,7 @@
             <div>
                 <h5 class="mt-0">Search wrong repayments info</h5>
                 <p>View all repayments information</p>
-                <a href="{{ url('/search_repayments_info') }}" class="stretched-link">Go to</a>
+                <a href="{{ url('/customer_search_for_wrong_repayment') }}" class="stretched-link">Go to</a>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@
         table-layout: fixed;
     }
 </style>
-@section('title', 'All Motorcycles Information')
+@section('title', 'All Plans Information')
 
 @section('main_content')
     <div class="p-4">
@@ -26,45 +26,32 @@
         <table id="myTable" class="table table-hover table table-bordered">
             <tr>
                 <th>ID</th>
-                <th>Location</th>
-                <th>Unit_id</th>
-                <th>Price</th>
-                <th>Certificate</th>
-                <th>Registration No.</th>
-                <th>Registered date</th>
+                <th>ML_branch_id</th>
+                <th>location_name</th>
+                <th>branch_address</th>
                 <th>Edit Button</th>
             </tr>
-            @foreach ($motorcycle_items as $motorcycle_item)
-                <tb>
-                    <form action="/edit_motorcycle_info" method="get" class="row g-3 needs-validation">
+            @foreach ($location_items as $location_item)
+                <tr>
+                    <form action="/edit_location_info" method="get" class="row g-3 needs-validation">
                         @csrf
                         <td>
-                            {{$motorcycle_item->id}}
+                            {{$location_item->id}}
                         </td>
                         <td>
-                            {{$motorcycle_item->getlocationname()}}
+                            {{$location_item->ML_branch_id}}
                         </td>
                         <td>
-                            {{$motorcycle_item->unit_id}}
+                            {{$location_item->location_name}}
                         </td>
                         <td>
-                            {{$motorcycle_item->price}}
+                            {{$location_item->branch_address}}
                         </td>
                         <td>
-                            {{$motorcycle_item->motorcycle_certificate}}
-                        </td>
-                        <td>
-                            {{$motorcycle_item->motorcycle_registration_number}}
-                        </td>
-                        <td>
-                            {{$motorcycle_item->created_at}}
-                        </td>
-                        <td>
-                            <input type="hidden" id="id" name="id" value="{{$motorcycle_item->id}}">
+                            <input type="hidden" id="id" name="id" value="{{$location_item->id}}">
                             <button type="submit" class="btn btn-primary">Select</button>
                         </td>
                     </form>
-                </tb>
                 </tr>
             @endforeach
         </table>

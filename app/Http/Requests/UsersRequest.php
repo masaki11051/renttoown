@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UsersRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UsersRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,8 @@ class UsersRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'motorcycle_certificate' => ['required', Rule::unique('motorcycles')->ignore($this->id)],
+            'motorcycle_registration_number' => ['required', Rule::unique('motorcycles')->ignore($this->id)],
         ];
     }
 }

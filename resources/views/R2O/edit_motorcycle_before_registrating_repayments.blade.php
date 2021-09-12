@@ -11,27 +11,21 @@
             </div>
         </nav>
         <div class="col-md-6">
-            <form action="/update_application" method="post" class="needs-validation">
+            <form action="/update_motorcycle_before_registrating_repayments" method="post">
                 @csrf
-                <div class="col-md-6">
-                    <label for="apply_date" class="form-label">Apply_Date</label>
-                    <input type="date" class="form-control" id="apply_date" name="apply_date" placeholder="YYYY-MM-DD"
-                           value="{{$applications->apply_date}}" min="2021-01-01" max="2032-12-31"
-                           required>
-                </div>
-                <br>
-                <div class="col-md-6">
-                    <label for="start_date" class="form-label">Start_Date</label>
-                    <input type="date" class="form-control" id="start_date" name="start_date" placeholder="YYYY-MM-DD"
-                           value="{{$applications->start_date}}" min="2021-01-01" max="2032-12-31"
-                           required>
-                </div>
-                <br>
+                <label for="edit_motorcycle" class="form-label">Motorcycle Update</label>
+                <select class="form-select" id="motorcycle_id" name="motorcycle_id">
+                    <option value="" style="display: none;">Choose right motorcycle</option>
+                    @foreach ($motorcycles as $motorcycle)
+                        <option value="{{$motorcycle->id}}">{{$motorcycle->unit_id}}</option>
+                    @endforeach
+                </select>
                 <input type="hidden" id="id" name="id" value="{{$applications->id}}">
                 <input type="hidden" id="customer_id" name="customer_id" value="{{$applications->customer_id}}">
                 <input type="hidden" id="company_id" name="company_id" value="{{$applications->company_id}}">
-                <input type="hidden" id="motorcycle_id" name="motorcycle_id" value="{{$applications->motorcycle_id}}">
                 <input type="hidden" id="plan_id" name="plan_id" value="{{$applications->plan_id}}">
+                <input type="hidden" id="apply_date" name="apply_date" value="{{$applications->apply_date}}">
+                <input type="hidden" id="start_date" name="start_date" value="{{$applications->start_date}}">
                 <input type="hidden" id="status" name="status" value="{{$applications->status}}">
                 <div class="m-2 col-12">
                     <button type="submit" class="btn btn-primary">Select</button>

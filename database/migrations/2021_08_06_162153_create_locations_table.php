@@ -15,7 +15,7 @@ class CreatelocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-        	$table->string('ML_branch_id');
+        	$table->string('ML_branch_id')->unique();
         	$table->string("location_name");
         	$table->string("branch_address");
             $table->timestamp('created_at')->useCurrent()->nullable();

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class customer extends Model
 {
     use HasFactory;
 
@@ -14,9 +14,9 @@ class Customer extends Model
     public static $rules = array(
         'name' => 'required',
         'age' => 'integer|min:21|max:60',
-        'phone_number' => 'required|regex:/^0\d{10}$/',
+        'phone_number' => 'required|regex:/^0\d{10}$/|unique:customers',
         'city' =>'required',
-        'mail' => 'required|regex:/^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+$/',
+        'mail' => 'required|regex:/^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+$/|unique:customers',
     );
 
 

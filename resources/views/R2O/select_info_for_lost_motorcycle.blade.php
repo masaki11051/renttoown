@@ -60,7 +60,7 @@
         <h1>Update location Info of the Motorcycle</h1>
         @csrf
         <button type="button" class="btn btn-outline-primary"><-Motorcycle-></button>
-        <form action="/update_info_for_returned_motorcycle" method="POST" class="needs-validation">
+        <form action="/update_info_for_lost_motorcycle" method="POST" class="needs-validation">
             <table class="table table-hover">
                 <thead>
                 <tr>

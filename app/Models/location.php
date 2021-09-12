@@ -12,7 +12,7 @@ class location extends Model
     protected $fillable = ['ML_branch_id', 'location_name', 'branch_address'];
 
     public static $locationrules = array(
-        'ML_branch_id' => 'required',
+        'ML_branch_id' => 'required|unique:locations',
         'location_name' => 'required',
         'branch_address' => 'required',
     );

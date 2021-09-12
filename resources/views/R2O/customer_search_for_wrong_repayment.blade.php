@@ -3,7 +3,7 @@
 
 
 </style>
-@section('title', 'Customer Search')
+@section('title', 'customer Search')
 
 @section('main_content')
     <div class="p-4">
@@ -16,7 +16,7 @@
                 </button>
             </div>
         </nav>
-        <form action="/input_application_info" method="POST" class="row g-3 needs-validation">
+        <form action="/select_wrong_repayments_info" method="POST" class="row g-3 needs-validation">
             @csrf
             <div class="col-md-4">
                 <label for="name" class="form-label">Name</label>
@@ -26,7 +26,6 @@
                 <label for="age" class="form-label">age</label>
                 <input type="number" class="form-control" id="age" min="21" max="60" name="input_age"
                        value="{{$input}}" required>
-                <div class="invalid-feedback">Please confirm customer's age</div>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Search</button>

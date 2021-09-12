@@ -1,13 +1,16 @@
 @extends('R2O.index')
 <style>
-
+div{
+    margin-top: 30px;
+    text-align: center;
+}
 
 </style>
-@section('title', 'Error Message')
+@section('title', '')
 
 @section('main_content')
-  <h1>Data is not exisitng</h1><br>
-  <h1>Please return to previous sites with the <strong>Back arrow</strong></h1>
-
-        </div>
-  @endsection
+    <div>
+        <h1>Data is not existing</h1><br>
+        <h1>Please return to previous sites with the <strong>Back arrow</strong></h1>
+    </div>
+@endsection

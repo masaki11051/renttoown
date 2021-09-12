@@ -4,7 +4,7 @@
         table-layout: fixed;
     }
 </style>
-@section('title', 'All repayments Information')
+@section('title', 'Search repayment Info')
 
 @section('main_content')
     <div class="p-4">
@@ -26,39 +26,44 @@
         <table id="myTable" class="table table-hover table table-bordered">
             <tr>
                 <th>ID</th>
-                <th>application_id</th>
+                <th>application id</th>
                 <th>customer name</th>
                 <th>number of repayment</th>
-                <th>payment_date</th>
+                <th>payment date</th>
                 <th>payment amount</th>
                 <th>payment status</th>
+                <th>select button</th>
             </tr>
             @foreach ($repayment_items as $repayment_item)
                 <tr>
-                    <form action="/edit_repayment_info" method="POST">
-                        @csrf
-                        <td>
-                            {{$repayment_item->id}}
-                        </td>
-                        <td>
-                            {{$repayment_item->application_id}}
-                        </td>
-                        <td>
-                            {{$repayment_item->getcustomername()}}
-                        </td>
-                        <td>
-                            {{$repayment_item->number_of_repayment}}
-                        </td>
-                        <td>
-                            {{$repayment_item->payment_date}}
-                        </td>
-                        <td>
-                            {{$repayment_item->payment_amount}}
-                        </td>
-                        <td>
-                            {{$repayment_item->payment_status}}
-                        </td>
-                    </form>
+                    <td>
+                        {{$repayment_item->id}}
+                    </td>
+                    <td>
+                        {{$repayment_item->application_id}}
+                    </td>
+                    <td>
+                        {{$repayment_item->getcustomername()}}
+                    </td>
+                    <td>
+                        {{$repayment_item->number_of_repayment}}
+                    </td>
+                    <td>
+                        {{$repayment_item->payment_date}}
+                    </td>
+                    <td>
+                        {{$repayment_item->payment_amount}}
+                    </td>
+                    <td>
+                        {{$repayment_item->payment_status}}
+                    </td>
+                    <td>
+                        <form action="/edit_repayment_info" method="POST">
+                            @csrf
+                            <input type="hidden" id="id" name="id" value=" {{$repayment_item->id}}">
+                            <button type="submit" class="btn btn-primary">select</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </table>
