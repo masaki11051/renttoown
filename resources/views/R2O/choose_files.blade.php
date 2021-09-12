@@ -3,7 +3,7 @@
 
 
 </style>
-@section('title', 'customer Infomation')
+@section('title', 'Customer Information')
 
 @section('main_content')
     <div class="p-4">
@@ -54,10 +54,10 @@
         @endif
         <br>
         @foreach($uploads as $upload)
-            <div style="width: 18rem; float:left; margin: 16px;">
+            <div style="width: 18rem;height: 12rem; float:left; margin: 16px;">
                 <form class="p-2" method="post" action="/delete_files">
                     @csrf
-                    <img src="{{Storage::url($upload->file_path)}}" style="width:100%;" alt=""/>
+                    <img src="{{Storage::url($upload->file_path)}}" style="width: 18rem;height: 12rem;" alt=""/>
                     <p>{{$upload->file_name}}</p>
                     <input type="hidden" id="customer_id" name="customer_id" value="{{$data->id}}">
                     <input type="hidden" id="id" name="id" value="{{$upload->id}}">

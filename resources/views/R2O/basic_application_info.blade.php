@@ -3,7 +3,7 @@
 
 
 </style>
-@section('title', 'customer Infomation')
+@section('title', 'Customer Information')
 
 @section('main_content')
     <div class="p-4">
@@ -61,21 +61,19 @@
                     </tr>
             </table>
             @endif
-            <br>
             @foreach($uploads as $upload)
-                <div style="width: 18rem; float:left; margin: 16px;">
-                    <img src="{{Storage::url($upload->file_path)}}" style="width:100%;" alt=""/>
-                    <p>{{ $upload->file_name }}</p>
+                <div class="flex-shrink-0 m-2" style="width: 18rem;height: 12rem;float:left;">
+                    <img src="{{Storage::url($upload->file_path)}}" style="width: 18rem;height: 12rem;" alt=""/>
+                    <p class="p-2">{{ $upload->file_name }}</p>
                 </div>
             @endforeach
-            <br>
             <input type="hidden" id="customer_id" name="customer_id" value="{{$data->id}}">
             <button type="submit" class="btn btn-outline-danger">More Details</button>
         </form>
-        <form class="p-2" method="post" action="/choose_files">
+        <form class="p-2 m-3" method="post" action="/choose_files">
             @csrf
             <input type="hidden" id="customer_id" name="customer_id" value="{{$data->id}}">
-            <button type="submit" class="btn btn-outline-danger">Delete Attached files</button>
+            <button type="submit" class="btn btn-outline-danger">Delete files</button>
         </form>
         <script>
         </script>

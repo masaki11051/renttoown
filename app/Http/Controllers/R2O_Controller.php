@@ -11,7 +11,7 @@ use App\Models\location;
 use App\Models\application;
 use App\Models\repayment;
 use Illuminate\Http\Request;
-use App\Http\Requests\UsersRequest;
+use Illuminate\Validation\Rule;
 
 
 class R2O_Controller extends Controller
@@ -893,7 +893,13 @@ class R2O_Controller extends Controller
 
     public function update_customer_info(Request $request)
     {
-        $this->validate($request, customer::$rules);
+        request()->validate([
+            'phone_number' => ['required', Rule::unique('customers')
+                ->ignore($request->id)],
+            'mail' => ['required', Rule::unique('customers')
+                ->ignore($request->id)],
+            //Table上でユニークである２つのデータをValidationで確認
+        ]);
         $form = $request->all();
         customer::where('id', $request->id)
             ->first()
@@ -920,6 +926,13 @@ class R2O_Controller extends Controller
     public function update_motorcycle_info(Request $request)
     {
         $form = $request->all();
+        request()->validate([
+            'motorcycle_certificate' => ['required', Rule::unique('motorcycles')
+                ->ignore($request->id)],
+            'motorcycle_registration_number' => ['required', Rule::unique('motorcycles')
+                ->ignore($request->id)],
+            //Table上でユニークである、２つをValidationで確認
+        ]);
         motorcycle::where('id', $request->id)
             ->first()
             ->update($form);
@@ -943,8 +956,12 @@ class R2O_Controller extends Controller
 
     public function update_location_info(Request $request)
     {
-        $this->validate($request, location::$locationrules);
         $form = $request->all();
+        request()->validate([
+            'ML_branch_id' => ['required', Rule::unique('locations')
+                ->ignore($request->id)],
+            //Table上でユニークであるデータをValidationで確認
+        ]);
         location::where('id', $request->id)
             ->first()
             ->update($form);
@@ -968,7 +985,6 @@ class R2O_Controller extends Controller
 
     public function update_plan_info(Request $request)
     {
-        $this->validate($request, plan::$planrules);
         $form = $request->all();
         plan::where('id', $request->id)
             ->first()
@@ -993,7 +1009,13 @@ class R2O_Controller extends Controller
 
     public function update_company_info(Request $request)
     {
-        $this->validate($request, company::$companyrules);
+        request()->validate([
+            'name' => ['required', Rule::unique('plans')
+                ->ignore($request->id)],
+            'phone_number' => ['required', Rule::unique('plans')
+                ->ignore($request->id)],
+            //Table上でユニークである２つのデータをValidationで確認
+        ]);
         $form = $request->all();
         company::where('id', $request->id)
             ->first()
