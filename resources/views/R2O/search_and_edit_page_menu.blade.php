@@ -60,14 +60,6 @@
             </div>
         </div>
         <div class="d-flex position-relative m-3">
-            <img src="/images/company.jpg" style="width: 9rem;height: 9rem" class="flex-shrink-0 me-3" alt="...">
-            <div>
-                <h5 class="mt-0">ALL COMPANIES</h5>
-                <p>View all registered companies' basic information</p>
-                <a href="{{ url('/all_companies_info') }}" class="stretched-link">Go to</a>
-            </div>
-        </div>
-        <div class="d-flex position-relative m-3">
             <img src="/images/bill.jpg" style="width: 9rem;height: 9rem" class="flex-shrink-0 me-3" alt="...">
             <div>
                 <h5 class="mt-0">ALL repayments</h5>

@@ -92,13 +92,8 @@
                                max="150000" required>
                     </td>
                     <td>
-                        <select class="form-select" id="location_id" name="location_id" required>
-                            <option value="" style="display: none;">Select a location for parking this motorcycle
-                            </option>
-                            @foreach ($locations as $location)
-                                <option value="{{$location->id}}">{{$location->location_name}}</option>
-                            @endforeach
-                        </select>
+                        <div>Motorcycle Lost</div>
+                        <input type="hidden" id="location_id" name="location_id" value="5">
                     </td>
                 </tr>
                 <input type="hidden" id="id" name="id" value="{{$motorcycles->id}}">

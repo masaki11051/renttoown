@@ -1,9 +1,9 @@
-document.getElementById("hidden1").style.display ="none";
+document.getElementById("hidden1").style.display = "none";
 //ボタンがクリックされるまでViewのHTMLを非表示
 document.getElementById('calculation_1').onclick = function () {
 
-    if(hidden1.style.display=="none"){
-        hidden1.style.display ="block";
+    if (hidden1.style.display == "none") {
+        hidden1.style.display = "block";
     }
     //ボタンがクリックされると同時に非表示箇所を表示
     const button = document.getElementById('calculation_1');
@@ -15,11 +15,11 @@ document.getElementById('calculation_1').onclick = function () {
     var interest = parseInt(table.rows[0].cells[1].innerHTML)
     var tenure = parseInt(table.rows[0].cells[2].innerHTML)
     //テーブルから支払額計算のためのデータをIntで取得
-    var son = amount * (interest/100) * Math.pow((1+(interest/100)),(tenure*12));
-    var mom = Math.pow((1+(interest/100)),(tenure*12)) - 1;
+    var son = amount * (interest / 100) * Math.pow((1 + (interest / 100)), (tenure * 12));
+    var mom = Math.pow((1 + (interest / 100)), (tenure * 12)) - 1;
     var pmt = son / mom;
     //実行年率での金利計算
-    var round_down = (Math.floor(pmt*100))/100;
+    var round_down = (Math.floor(pmt * 100)) / 100;
     //小数点調整と小数点３位以下切り捨て（切り上げにすると、総支払額が元本を越えるため）
     const RA = document.createElement('h2')
     RA.innerHTML = round_down
@@ -45,9 +45,9 @@ document.getElementById('calculation_1').onclick = function () {
     //var ymd_month = parseInt(date_calculation.slice(5, 7))
     //var ymd_day = parseInt(date_calculation.slice(8, 10))
 
-   // if (10 <= ymd_day && ymd_day <= 24) {
+    // if (10 <= ymd_day && ymd_day <= 24) {
     //    var first_payment_amount = (Math.ceil(((30 - ymd_day + 1)*daily_payment_amount)*100)/100)
-   // } else if (1 <= ymd_day && ymd_day <= 9){
+    // } else if (1 <= ymd_day && ymd_day <= 9){
     //    var first_payment_amount = (Math.ceil(((15 - ymd_day + 1)*daily_payment_amount)*100)/100)
     //} else {
     //    var first_payment_amount = (Math.ceil(((45 - ymd_day + 1)*daily_payment_amount)*100)/100)
@@ -92,63 +92,63 @@ document.getElementById('calculation_1').onclick = function () {
                     //０列目は、支払い回数なので１から、1行ごとにプラス１
                 } else if (j === 1) {
                     if (i >= 1) {
-                        if(date.getMonth() === 0 && date.getDate() === 30 ) {
+                        if (date.getMonth() === 0 && date.getDate() === 30) {
                             date.setDate(1);
                             date.setMonth(date.getMonth() + 2)
                             date.setDate(0);
                             //2月に30日が存在せず支払いサイクルがズレるので、2月は月末算出
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
-                        }else if(date.getDate() === 28 || date.getDate() === 29) {
+                        } else if (date.getDate() === 28 || date.getDate() === 29) {
                             date.setMonth(date.getMonth() + 1)
                             date.setDate(30);
                             //初回支払日が2月の場合は28日、ないしは29日が支払日となるため、よく月の支払日が30日になるように調整
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
-                        }else{
+                        } else {
                             date.setMonth(date.getMonth() + 1)
                             //月に一度の支払いのため、毎月同じ日付を表示
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
@@ -161,39 +161,39 @@ document.getElementById('calculation_1').onclick = function () {
                         td.appendChild(payment_schedule);
                         //コントローラーでデータベースに保存するために計算結果をInputフォームに代入
                     } else {
-                        if(date.getMonth() === 2 && date.getDate() === 1 || date.getMonth() === 2 && date.getDate() === 2) {
+                        if (date.getMonth() === 2 && date.getDate() === 1 || date.getMonth() === 2 && date.getDate() === 2) {
                             date.setDate(0);
                             //初回支払日が2月の場合は30日が存在せず69行目の30日指定により、3月１日な石は2日が表示されるため、2月の月末表示ね修正
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
-                        }else{
-                            if(date.getDay() === 0) {
+                        } else {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
@@ -236,63 +236,63 @@ document.getElementById('calculation_1').onclick = function () {
                     //０列目は、支払い回数なので１から、1行ごとにプラス１
                 } else if (j === 1) {
                     if (i >= 1) {
-                        if(date.getMonth() === 0 && date.getDate() === 30 ) {
+                        if (date.getMonth() === 0 && date.getDate() === 30) {
                             date.setDate(1);
                             date.setMonth(date.getMonth() + 2)
                             date.setDate(0);
                             //2月に30日が存在せず支払いサイクルがズレるので、2月は月末算出
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
-                        }else if(date.getDate() === 28 || date.getDate() === 29) {
+                        } else if (date.getDate() === 28 || date.getDate() === 29) {
                             date.setMonth(date.getMonth() + 1)
                             date.setDate(30);
                             //初回支払日が2月の場合は28日、ないしは29日が支払日となるため、よく月の支払日が30日になるように調整
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
-                        }else{
+                        } else {
                             date.setMonth(date.getMonth() + 1)
                             //月に一度の支払いのため、毎月同じ日付を表示
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
@@ -305,39 +305,39 @@ document.getElementById('calculation_1').onclick = function () {
                         td.appendChild(payment_schedule);
                         //コントローラーでデータベースに保存するために計算結果をInputフォームに代入
                     } else {
-                        if(date.getMonth() === 2 && date.getDate() === 1 || date.getMonth() === 2 && date.getDate() === 2) {
+                        if (date.getMonth() === 2 && date.getDate() === 1 || date.getMonth() === 2 && date.getDate() === 2) {
                             date.setDate(0);
                             //初回支払日が2月の場合は30日が存在せず69行目の30日指定により、3月１日な石は2日が表示されるため、2月の月末表示ね修正
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
-                        }else{
-                            if(date.getDay() === 0) {
+                        } else {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
@@ -380,63 +380,63 @@ document.getElementById('calculation_1').onclick = function () {
                     //０列目は、支払い回数なので１から、1行ごとにプラス１
                 } else if (j === 1) {
                     if (i >= 1) {
-                        if(date.getMonth() === 0 && date.getDate() === 30 ) {
+                        if (date.getMonth() === 0 && date.getDate() === 30) {
                             date.setDate(1);
                             date.setMonth(date.getMonth() + 2)
                             date.setDate(0);
                             //2月に30日が存在せず支払いサイクルがズレるので、2月は月末算出
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
-                        }else if(date.getDate() === 28 || date.getDate() === 29) {
+                        } else if (date.getDate() === 28 || date.getDate() === 29) {
                             date.setMonth(date.getMonth() + 1)
                             date.setDate(30);
                             //初回支払日が2月の場合は28日、ないしは29日が支払日となるため、よく月の支払日が30日になるように調整
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
-                        }else{
+                        } else {
                             date.setMonth(date.getMonth() + 1)
                             //月に一度の支払いのため、毎月同じ日付を表示
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
@@ -449,39 +449,39 @@ document.getElementById('calculation_1').onclick = function () {
                         td.appendChild(payment_schedule);
                         //コントローラーでデータベースに保存するために計算結果をInputフォームに代入
                     } else {
-                        if(date.getMonth() === 2 && date.getDate() === 1 || date.getMonth() === 2 && date.getDate() === 2) {
+                        if (date.getMonth() === 2 && date.getDate() === 1 || date.getMonth() === 2 && date.getDate() === 2) {
                             date.setDate(0);
                             //初回支払日が2月の場合は30日が存在せず69行目の30日指定により、3月１日な石は2日が表示されるため、2月の月末表示ね修正
-                            if(date.getDay() === 0) {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }
-                        }else{
-                            if(date.getDay() === 0) {
+                        } else {
+                            if (date.getDay() === 0) {
                                 date.setDate(date.getDate() - 2)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 2)
                                 //日曜日は支払日とならないため、日曜日の場合は2日前の金曜日へ支払日を変更
-                            }else if(date.getDay() === 6){
+                            } else if (date.getDay() === 6) {
                                 date.setDate(date.getDate() - 1)
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                                 date.setDate(date.getDate() + 1)
                                 //土曜日は支払日とならないため、土曜日の場合は1日前の金曜日へ支払日を変更
-                            }else{
+                            } else {
                                 td.innerHTML = date.toDateString();
                                 tr.appendChild(td);
                             }

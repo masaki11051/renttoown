@@ -461,7 +461,6 @@ class R2O_Controller extends Controller
 
     public function update_info_for_returned_motorcycle(Request $request)
     {
-        $this->validate($request, motorcycle::$motorcyclerules);
         $form = $request->all();
         $application = application::where('motorcycle_id', $request->id)
             ->where('status', 1)
@@ -511,7 +510,6 @@ class R2O_Controller extends Controller
 
     public function update_info_for_lost_motorcycle(Request $request)
     {
-        $this->validate($request, motorcycle::$motorcyclerules);
         $form = $request->all();
         $application = application::where('motorcycle_id', $request->id)
             ->where('status', 1)

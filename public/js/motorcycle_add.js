@@ -2,6 +2,7 @@ document.getElementById("hidden1").style.display = "none";
 document.getElementById("hidden2").style.display = "none";
 document.getElementById("hidden3").style.display = "none";
 document.getElementById("hidden4").style.display = "none";
+
 //メーカーを選択前では車両モデルの選択を非表示
 
 function myfunc() {

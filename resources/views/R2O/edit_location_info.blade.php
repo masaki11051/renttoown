@@ -17,7 +17,7 @@
                 @endforeach
             </ul>
         @endif
-        <h1>Company Registration Form</h1>
+        <h1>location Registration Form</h1>
         <form action="/update_location_info" method="POST" class="row g-3 needs-validation">
             @csrf
             <div class="col-md-6">

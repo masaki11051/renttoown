@@ -3,7 +3,7 @@
 
 
 </style>
-@section('title', 'Customer Information')
+@section('title', 'customer Information')
 
 @section('main_content')
     <div class="p-4">
@@ -56,8 +56,8 @@
             @endif
             <br>
             @foreach($uploads as $upload)
-                <div class="flex-shrink-0 m-2" style="width: 18rem;height: 12rem;">
-                    <img src="{{Storage::url($upload->file_path)}}"  alt=""/>
+                <div style="width: 18rem; float:left; margin: 16px;">
+                    <img src="{{ Storage::url($upload->file_path) }}" style="width:100%;" alt="">
                     <p>{{ $upload->file_name }}</p>
                 </div>
             @endforeach
